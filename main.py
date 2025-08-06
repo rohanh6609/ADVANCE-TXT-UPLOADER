@@ -144,7 +144,6 @@ caption = (
 @bot.on_message(filters.command(["start"]))
 async def start_command(bot: Client, message: Message):
     import requests
-    from pyrogram.types import InputFile
     import os
 
     random_image_url = random.choice(image_urls)
@@ -158,7 +157,7 @@ async def start_command(bot: Client, message: Message):
     # Send it
     await bot.send_photo(
         chat_id=message.chat.id,
-        photo=InputFile("temp.jpg"),
+        photo="temp.jpg",  # <-- no InputFile needed
         caption=caption,
         reply_markup=keyboard
     )
