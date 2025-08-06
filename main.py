@@ -115,17 +115,12 @@ async def sudo_command(bot: Client, message: Message):
 
 # Inline keyboard for start command
 keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("" ,url=f"") ],
-                    [
-                    InlineKeyboardButton("" ,url="") ],
-                    [
-                    InlineKeyboardButton("" ,url="")                              
-                ],           
-            ]
-      )
-    
+    [
+        [InlineKeyboardButton("Source Code", url="https://github.com/rohanh6609/ADVANCE-TXT-UPLOADER")],
+        [InlineKeyboardButton("Support", url="https://t.me/Tushar0125")],
+        [InlineKeyboardButton("Developer", url="https://t.me/Tushar0125")]
+    ]
+)
 # Image URLs for the random image feature
 image_urls = [
     "https://picsum.photos/800/300",
@@ -875,4 +870,4 @@ async def upload(bot: Client, m: Message):
 
 bot.run()
 if __name__ == "__main__":
-    asyncio.run(main())
+    bot.run()
