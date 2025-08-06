@@ -143,8 +143,28 @@ caption = (
 # Start command handler
 @bot.on_message(filters.command(["start"]))
 async def start_command(bot: Client, message: Message):
-    await bot.send_photo(chat_id=message.chat.id, photo=random_image_url, caption=caption, reply_markup=keyboard)
-    
+    import requests
+    from pyrogram.types import InputFile
+    import os
+
+    random_image_url = random.choice(image_urls)
+
+    # Download image
+    resp = requests.get(random_image_url)
+    resp.raise_for_status()
+    with open("temp.jpg", "wb") as f:
+        f.write(resp.content)
+
+    # Send it
+    await bot.send_photo(
+        chat_id=message.chat.id,
+        photo=InputFile("temp.jpg"),
+        caption=caption,
+        reply_markup=keyboard
+    )
+
+    os.remove("temp.jpg")
+
 # Stop command handler
 @bot.on_message(filters.command("stop"))
 async def restart_handler(_, m: Message):
